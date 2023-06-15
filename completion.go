@@ -88,6 +88,19 @@ func checkEndpointSupportsModel(endpoint, model string) bool {
 	return !disabledModelsForEndpoints[endpoint][model]
 }
 
+// 模型是否支持插件
+var disabledPluginsForModels = map[string]bool{
+	GPT3Dot5Turbo0613:    true,
+	GPT3Dot5Turbo16K:     true,
+	GPT3Dot5Turbo16K0613: true,
+	GPT40613:             true,
+	GPT432K0613:          true,
+}
+
+func checkModelSupportsPlugins(model string) bool {
+	return disabledPluginsForModels[model]
+}
+
 func checkPromptType(prompt any) bool {
 	_, isString := prompt.(string)
 	_, isStringSlice := prompt.([]string)
